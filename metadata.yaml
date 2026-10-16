@@ -1,8 +1,8 @@
 name: astrbot_plugin_tavern_preset
 display_name: 酒馆预设适配器
-desc: 直接导入酒馆（SillyTavern）预设：Prompt Order 编排、In-Chat @ Depth 深度注入、宏变量替换、Handlebars 模板、采样参数同步。针对 AstrBot 无角色卡/无世界书环境做了槽位化适配，并修复 v4.27 Agent 模式下框架提示词与预设争夺身份导致「预设不生效」的问题。
+desc: 直接导入酒馆（SillyTavern）预设：Prompt Order 编排、In-Chat @ Depth 深度注入、宏变量替换、Handlebars 模板、采样参数同步。针对 AstrBot 无角色卡/无世界书环境做了槽位化适配，并修复 v4.27 Agent 模式下框架提示词与预设争夺身份导致「预设不生效」的问题。（⚠️ 纯 AI 生成的凑数/演示插件，未经人工充分验证）
 version: v1.1.0
-author: AstrBotDev
+author: hajimi2310
 repo: "https://github.com/hajimi2310/astrbot_plugin_tavern_preset"
 astrbot_version: ">=4.0.0"
 commands:
