@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 备份 / 临时文件
+*.bak
+*.bak.*
+*.orig
+*.log
+*.tmp
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 编辑器 / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 运行时数据（如插件后续产生）
+data/runtime/
+*.local.json

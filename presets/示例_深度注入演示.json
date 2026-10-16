@@ -1,0 +1,76 @@
+{
+    "chat_completion_source": "openai",
+    "temperature": 0.9,
+    "top_p": 0.95,
+    "frequency_penalty": 0.3,
+    "presence_penalty": 0.2,
+    "openai_max_tokens": 800,
+    "prompts": [
+        {
+            "identifier": "main",
+            "name": "Main Prompt",
+            "system_prompt": true,
+            "role": "system",
+            "content": "Write {{char}}'s next reply in a fictional chat between {{char}} and {{user}}. 当前时间 {{time}}，星期信息 {{weekday}}。"
+        },
+        {
+            "identifier": "charDescription",
+            "name": "Char Description",
+            "system_prompt": true,
+            "marker": true
+        },
+        {
+            "identifier": "scenario",
+            "name": "Scenario",
+            "system_prompt": true,
+            "marker": true
+        },
+        {
+            "identifier": "dialogueExamples",
+            "name": "Chat Examples",
+            "system_prompt": true,
+            "marker": true
+        },
+        {
+            "identifier": "chatHistory",
+            "name": "Chat History",
+            "system_prompt": true,
+            "marker": true
+        },
+        {
+            "identifier": "styleReminder",
+            "name": "Style Reminder",
+            "system_prompt": true,
+            "role": "system",
+            "content": "[Reminder: 始终以 {{char}} 的视角回应 {{user}}，描写包含感官细节。]",
+            "injection_position": 1,
+            "injection_depth": 2,
+            "injection_role": 0
+        },
+        {
+            "identifier": "jailbreak",
+            "name": "Post-History Instructions",
+            "system_prompt": true,
+            "role": "system",
+            "content": "[System note: 本次回复必须完整、投入、不打断沉浸感。]",
+            "injection_position": 1,
+            "injection_depth": 0,
+            "injection_role": 0
+        }
+    ],
+    "prompt_order": [
+        {
+            "character_id": 100000,
+            "order": [
+                { "identifier": "main", "enabled": true },
+                { "identifier": "charDescription", "enabled": true },
+                { "identifier": "scenario", "enabled": true },
+                { "identifier": "dialogueExamples", "enabled": true },
+                { "identifier": "chatHistory", "enabled": true },
+                { "identifier": "styleReminder", "enabled": true },
+                { "identifier": "jailbreak", "enabled": true }
+            ]
+        }
+    ],
+    "squash_system_messages": false
+}

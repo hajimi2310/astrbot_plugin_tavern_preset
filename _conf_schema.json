@@ -1,0 +1,98 @@
+{
+  "preset_basic": {
+    "description": "基础开关",
+    "type": "object",
+    "hint": "酒馆预设接管 LLM 请求的核心行为",
+    "items": {
+      "enable": {
+        "description": "启用预设接管",
+        "type": "bool",
+        "default": true,
+        "hint": "关闭后插件完全放行原始请求，等同于停用"
+      },
+      "original_system_prompt_mode": {
+        "description": "原系统提示处理",
+        "type": "string",
+        "default": "drop",
+        "options": ["drop", "to_char_description", "prepend_to_head"],
+        "hint": "AstrBot 的 Agent 提示/人格/工具提示/安全提示如何处置。drop(推荐)=不进请求,预设完全接管；to_char_description=塞进 charDescription 标记位；prepend_to_head=前置到预设头部。实测非 drop 时框架身份会与角色设定冲突,模型容易拒绝入戏"
+      },
+      "sampling_sync_mode": {
+        "description": "采样参数同步方式",
+        "type": "string",
+        "default": "custom_extra_body",
+        "options": ["custom_extra_body", "off", "legacy_req_attrs"],
+        "hint": "AstrBot v4.27 的 ProviderRequest 没有 temperature/top_p 字段,只有写进 provider 的 custom_extra_body 才真正到达 API(解绑预设时自动还原)。off=不同步;legacy_req_attrs=只写 req 属性(通常无效)"
+      },
+      "apply_sampling": {
+        "description": "同步采样参数（旧开关）",
+        "type": "bool",
+        "default": true,
+        "hint": "v1.0 遗留开关,等价于 sampling_sync_mode=custom_extra_body/off"
+      },
+      "use_persona_as_char": {
+        "description": "人格视作角色卡（旧开关·已弃用）",
+        "type": "bool",
+        "default": false,
+        "hint": "v1.0 行为:把 AstrBot 人格填进 charDescription。已由「原系统提示处理」取代,仅在原系统提示处理未设置时作为兜底"
+      },
+      "squash_system_messages": {
+        "description": "合并连续同角色消息",
+        "type": "bool",
+        "default": true,
+        "hint": "跟随预设的 squash_system_messages 字段，兼容不支持多条 system 的模型"
+      },
+      "depth0_mode": {
+        "description": "深度 0 注入落点",
+        "type": "string",
+        "default": "prompt_suffix",
+        "options": ["prompt_suffix", "context_tail", "system_prompt"],
+        "hint": "AstrBot 管线中最后一条消息固定为当前用户输入。prompt_suffix=追加到用户输入末尾（最接近酒馆语义，推荐）；context_tail=作为独立消息放在历史末尾；system_prompt=并入系统提示"
+      },
+      "prefer_prompt_order_char_id": {
+        "description": "prompt_order 选用角色 ID",
+        "type": "int",
+        "default": 100000,
+        "hint": "酒馆预设可含多个 character_id 的排序方案，找不到时使用预设中的第一个方案"
+      }
+    }
+  },
+  "preset_defaults": {
+    "description": "默认槽位",
+    "type": "object",
+    "hint": "会话/全局槽位都未设置时的兜底值",
+    "items": {
+      "default_char_name": {
+        "description": "默认角色名 {{char}}",
+        "type": "string",
+        "default": "Assistant",
+        "hint": "AstrBot 没有角色卡，{{char}} 宏取此值；可用 /预设 设定 角色名 按会话覆盖"
+      },
+      "default_user_name": {
+        "description": "默认用户名 {{user}}",
+        "type": "string",
+        "default": "",
+        "hint": "留空则自动使用消息发送者昵称"
+      }
+    }
+  },
+  "preset_debug": {
+    "description": "调试",
+    "type": "object",
+    "hint": "",
+    "items": {
+      "debug_log": {
+        "description": "输出装配日志",
+        "type": "bool",
+        "default": false,
+        "hint": "每次 LLM 请求时在日志打印装配摘要"
+      },
+      "preview_max_chars": {
+        "description": "预览单条截断长度",
+        "type": "int",
+        "default": 160,
+        "hint": "/预设 预览 与 详情 中单条内容的截断字符数"
+      }
+    }
+  }
+}

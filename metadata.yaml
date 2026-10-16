@@ -1,0 +1,18 @@
+name: astrbot_plugin_tavern_preset
+display_name: 酒馆预设适配器
+desc: 直接导入酒馆（SillyTavern）预设：Prompt Order 编排、In-Chat @ Depth 深度注入、宏变量替换、Handlebars 模板、采样参数同步。针对 AstrBot 无角色卡/无世界书环境做了槽位化适配，并修复 v4.27 Agent 模式下框架提示词与预设争夺身份导致「预设不生效」的问题。
+version: v1.1.0
+author: AstrBotDev
+repo: "https://github.com/hajimi2310/astrbot_plugin_tavern_preset"
+astrbot_version: ">=4.0.0"
+commands:
+  - command: /预设
+    desc: 酒馆预设管理（列表/导入/使用/设定/预览/自检 等，发送 /预设 帮助 查看全部）
+  - command: /预设 导入
+    desc: 直接粘贴酒馆导出的预设 JSON 完成导入
+  - command: /预设 使用
+    desc: 为当前会话绑定指定预设
+  - command: /预设 自检
+    desc: 诊断预设是否真正生效（钩子触发次数、真实请求快照、采样同步状态）
+  - command: /预设 预览
+    desc: 查看最近一次真实请求与模拟装配的消息结构
